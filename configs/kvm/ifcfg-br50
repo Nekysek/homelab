@@ -1,0 +1,6 @@
+DEVICE=br50
+NAME=br50
+TYPE=Bridge
+ONBOOT=yes
+BOOTPROTO=none
+NM_CONTROLLED=yes

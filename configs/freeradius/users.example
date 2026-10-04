@@ -1,0 +1,47 @@
+# Homelab – segmentovaná síť
+# FreeRADIUS authorize - MAB – VZOR (ukázka struktury; skutečný soubor je generovaný a obsahuje více záznamů)
+# Klíč: MAC adresa malými písmeny bez oddělovačů (viz policy.d/mab), hodnoty určují VLAN.
+
+# === VLAN42 (trusted) ===
+
+00005e005301    Auth-Type := Accept
+                Tunnel-Type = VLAN,
+                Tunnel-Medium-Type = IEEE-802,
+                Tunnel-Private-Group-ID = "42",
+                Mikrotik-Wireless-VLANID = 42
+
+00005e005302    Auth-Type := Accept
+                Tunnel-Type = VLAN,
+                Tunnel-Medium-Type = IEEE-802,
+                Tunnel-Private-Group-ID = "42",
+                Mikrotik-Wireless-VLANID = 42
+
+# === VLAN60 (tabulky) ===
+
+00005e005303    Auth-Type := Accept
+                Tunnel-Type = VLAN,
+                Tunnel-Medium-Type = IEEE-802,
+                Tunnel-Private-Group-ID = "60",
+                Mikrotik-Wireless-VLANID = 60
+
+00005e005304    Auth-Type := Accept
+                Tunnel-Type = VLAN,
+                Tunnel-Medium-Type = IEEE-802,
+                Tunnel-Private-Group-ID = "60",
+                Mikrotik-Wireless-VLANID = 60
+
+# === VLAN62 (ip telefony) ===
+
+00005e005305    Auth-Type := Accept
+                Tunnel-Type = VLAN,
+                Tunnel-Medium-Type = IEEE-802,
+                Tunnel-Private-Group-ID = "62",
+                Mikrotik-Wireless-VLANID = 62
+
+# === VLAN99 (admin) ===
+
+00005e005306    Auth-Type := Accept
+                Tunnel-Type = VLAN,
+                Tunnel-Medium-Type = IEEE-802,
+                Tunnel-Private-Group-ID = "99",
+                Mikrotik-Wireless-VLANID = 99

@@ -1,0 +1,45 @@
+server default {
+    listen {
+        type = auth
+        ipaddr = *
+        port = 1812
+    }
+    listen {
+        type = acct
+        ipaddr = *
+        port = 1813
+    }
+    authorize {
+        preprocess
+        mab_normalize
+        files
+        if (noop) {
+            if (&NAS-Identifier == "RT-SRV") {
+                update reply {
+                    Tunnel-Type = VLAN,
+                    Tunnel-Medium-Type = IEEE-802,
+                    Tunnel-Private-Group-ID = "40",
+                    Mikrotik-Wireless-VLANID = 40
+                }
+                update control {
+                    Auth-Type := Accept
+                }
+                ok
+            }
+            else {
+                reject
+            }
+        }
+    }
+    authenticate {
+        Auth-Type Accept {
+            ok
+        }
+    }
+    accounting {
+        ok
+    }
+    post-auth {
+        ok
+    }
+}

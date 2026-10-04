@@ -1,0 +1,20 @@
+$ORIGIN lab.local.
+$TTL 86400
+
+@ IN SOA dns1.lab.local. admin.lab.local. (
+2026051401 ; serial
+21600      ; refresh
+3600       ; retry
+604800     ; expire
+86400 )    ; minimum
+
+  IN A 172.22.21.1
+  IN A 172.22.21.2
+
+  IN NS dns1.lab.local.
+  IN NS dns2.lab.local.
+
+dns1 IN A 172.22.21.1
+dns2 IN A 172.22.21.2
+
+data IN A 172.22.50.3

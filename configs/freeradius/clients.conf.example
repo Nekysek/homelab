@@ -1,0 +1,23 @@
+# Homelab – segmentovaná síť
+# NAS klienti
+
+client AA {
+    ipaddr      = 172.22.10.1
+    secret      = CHANGE_ME
+    nastype     = cisco
+    shortname   = AA
+}
+
+client RT-SRV {
+    ipaddr      = 172.22.10.254
+    secret      = CHANGE_ME
+    nastype     = other
+    shortname   = RT-SRV
+}
+
+client AB {
+    ipaddr      = 172.22.10.2
+    secret      = CHANGE_ME
+    nastype     = other
+    shortname   = AB
+}

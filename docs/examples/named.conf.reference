@@ -1,0 +1,34 @@
+// REFERENČNÍ KONFIGURACE (rekonstrukce) – původní named.conf se nezachoval.
+// Vychází ze zachované zóny, z logů BINDu a z popisu sítě. Slouží jako ukázka zamýšlené podoby DNS,
+// ne jako přesná kopie produkční konfigurace.
+//
+// DNS1 (master pro lab.local). Na DNS2 je zóna lab.local typu "secondary" s "primaries { 172.22.21.1; };".
+
+options {
+    directory "/var/named";
+    listen-on { any; };
+    allow-query { 172.22.0.0/16; };
+    recursion yes;
+    allow-recursion { 172.22.0.0/16; };
+
+    // upstream resolver
+    forwarders { 1.1.1.1; 1.0.0.1; };
+    forward only;
+
+    dnssec-validation yes;
+};
+
+// interní zóna pro celou síť
+zone "lab.local" IN {
+    type primary;
+    file "lab.local.zone";
+    allow-transfer { 172.22.21.2; };
+    also-notify   { 172.22.21.2; };
+};
+
+// doména Samba AD – dotazy směřují na doménové řadiče (forward zóna místo přenosu zóny)
+zone "lab.lad" IN {
+    type forward;
+    forward only;
+    forwarders { 172.22.50.1; 172.22.50.2; };
+};

@@ -1,0 +1,10 @@
+mab_normalize {
+    update request {
+        &User-Name := "%{tolower:%{User-Name}}"
+    }
+    if (&User-Name =~ /^([0-9a-f]{2})[^0-9a-f]([0-9a-f]{2})[^0-9a-f]([0-9a-f]{2})[^0-9a-f]([0-9a-f]{2})[^0-9a-f]([0-9a-f]{2})[^0-9a-f]([0-9a-f]{2})$/) {
+        update request {
+            &User-Name := "%{1}%{2}%{3}%{4}%{5}%{6}"
+        }
+    }
+}
